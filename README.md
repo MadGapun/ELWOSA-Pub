@@ -1,123 +1,76 @@
-# ELWOSA-Pub
-Dieses ist das öffentliche Repository von meinem ELWOSA Projekt.
+# ELWOSA - Enterprise-Level Work Organization & System Architecture
 
-# 🧠 ELWOSA – Enhanced Learning & Work Organization System for AI
+**An AI-powered project management and automation platform demonstrating modern architecture patterns and best practices.**
 
-ELWOSA ist ein experimentelles Open-System zur **Verschmelzung von KI und menschlicher Projektsteuerung**. Es kombiniert ein **regelbasiertes Gedächtnis**, eine **Aufgabensteuerung**, ein **visuelles Dashboard** und eine **Schnittstelle für autonome KI-Agenten** (z. B. GPT, Claude, AgentOps).
+ELWOSA showcases a microservices-based architecture with real-time task management, AI integration, and responsive web interfaces. Built with scalability and maintainability in mind, it demonstrates proficiency in full-stack development, system design, and DevOps practices.
 
-Das System wird derzeit in einem privaten Laborumfeld entwickelt und getestet. Dieses Repository dient als öffentliche Vorschau und enthält eine **vollständige Projektbeschreibung** – Quellcode und interne Daten sind (noch) nicht veröffentlicht.
+## 🚀 Key Features
 
----
+- **Microservices Architecture**: Modular design with independent services for tasks, authentication, and AI integration
+- **Real-time Dashboard**: Modern React/TypeScript interface with live updates
+- **AI Integration**: Multi-model support with streaming capabilities  
+- **RESTful APIs**: Well-documented endpoints following OpenAPI 3.0 specification
+- **PostgreSQL Backend**: Robust data persistence with migration support
+- **JWT Authentication**: Secure, token-based authentication system
+- **Docker-ready**: Containerized deployment with orchestration support
 
-## 🚀 Ziel von ELWOSA
+## 🛠️ Tech Stack
 
-**ELWOSA** soll ein intelligentes Betriebssystem für persönliche und kollaborative Arbeit werden – eine Schaltzentrale für:
+- **Backend**: Python (FastAPI), Node.js
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Database**: PostgreSQL
+- **DevOps**: Docker, GitHub Actions CI/CD
+- **Documentation**: OpenAPI, Mermaid diagrams
 
-- ✅ **intelligente Aufgabenverwaltung**
-- ✅ **kontextbasiertes Gedächtnis** mit KI-Zugriff
-- ✅ **Regelbasierte Automatisierung** (z. B. „Wenn Aufgabe 3× scheitert → Diagnose starten“)
-- ✅ **Webbasiertes Dashboard** zur Steuerung & Kontrolle
-- ✅ **Schnittstelle für KI-Agenten**, um Aufgaben zu übernehmen, auszuführen und zu reflektieren
+## 📖 Documentation
 
-Ziel ist eine **Symbiose aus Mensch und KI**, bei der die KI nicht nur reagiert, sondern **proaktiv begleitet**, mitdenkt, dokumentiert und lernt.
+- [Architecture Overview](./ARCHITECTURE.md) - System design and components
+- [API Documentation](./docs/api/) - Complete API reference
+- [Deployment Guide](./docs/deployment/) - Installation and configuration
+- [Project Story](./docs/story/README.md) - The journey behind ELWOSA
 
----
+## 🏗️ Quick Start
 
-## 🧩 Architektur (vereinfacht dargestellt)
+```bash
+# Clone repository
+git clone https://github.com/MadGapun/ELWOSA-Pub.git
 
-[ Browser / Nutzer ] <---> [ ELWOSA Dashboard ]
-|
-v
-+------------------+ +------------------+ +-------------------+
-| Memory-API | <-->| Task-API | <-->| ELWOSA-KI-Agenten |
-| (FastAPI, DB) | | (FastAPI, DB) | | (GPT / AgentOps) |
-+------------------+ +------------------+ +-------------------+
-|
-v
-[ Regelengine & Logging ]
+# Start services with Docker
+docker-compose up -d
 
-- **Memory-API:** Persistente Speicherung aller Einträge, Aufgaben, Begriffe, Zusammenhänge.
-- **Task-API:** Aufgabenverwaltung (mit Status, Prioritäten, Schritten, Regeln).
-- **Dashboard:** Visuelles Zwei-Spalten-Webinterface zur Interaktion mit dem System.
-- **Agent-Integration:** GPT/Claude führen Aufgaben aus, dokumentieren Ergebnisse, analysieren Muster.
-- **Regelengine:** Führt automatische Aktionen aus, z. B. bei Fehlern oder Abweichungen.
+# Access dashboard
+open http://localhost:3000
+```
 
----
+## 📊 Live Demo
 
-## 📦 Derzeitiger Stand (Juni 2025)
+- **Dashboard**: [Coming Soon]
+- **API Explorer**: Access `/api/docs` after deployment
 
-- ✅ Task-API und Memory-API vollständig lauffähig
-- ✅ KI-Agent ist über lokale API ansprechbar (via GPT / Claude)
-- ✅ Regelwerk dokumentiert und funktionsfähig (z. B. Goldene Regel)
-- ✅ Visuelles Dashboard auf Port 3000 verfügbar
-- 🔄 Aktuell in Arbeit: Live-Statusanzeige, Mobiloptimierung, Langzeitspeicher
-- 🔒 Code & Inhalte sind noch nicht veröffentlicht (private Umgebung)
+## 🎯 Use Cases
 
----
+ELWOSA is designed for organizations seeking to:
+- Streamline project and task management
+- Integrate AI capabilities into workflows
+- Build scalable, maintainable systems
+- Implement modern DevOps practices
 
-## 🧠 Was ELWOSA besonders macht
+## 🤝 Contributing
 
-- Es geht nicht um ein weiteres „Task-Tool“, sondern um ein System, das **langfristig denkt**.
-- **Kontextbasiertes Gedächtnis** erlaubt es, alte Entscheidungen mit neuen zu verknüpfen.
-- **Agenten verstehen Regeln** wie: „Wenn ein Task 3× abgeschlossen & reaktiviert wurde, → Folgeanalyse starten.“
-- **Selbsterklärende Oberfläche** – mit Fokus auf **Verlauf, Mustererkennung und Systemgesundheit**.
+We welcome contributions! Please see our [Contributing Guidelines](./CONTRIBUTING.md) for details.
 
----
+## 📈 Project Status
 
-## 💬 Warum dieses Repository?
+This is an active project demonstrating production-ready patterns. The codebase represents real-world solutions to complex architectural challenges.
 
-Da ein Großteil des ELWOSA-Systems in privater Entwicklung ist, enthält dieses öffentliche Repository nur:
+## 📝 License
 
-- 📄 Diese README (Projektbeschreibung)
-- 🧱 Optionale Planungsdokumente, Architekturskizzen, API-Beschreibungen (künftig)
-- ✍️ Gelegentliche Zwischenstände & Ideen aus der Entwicklung
+MIT License - See [LICENSE](./LICENSE) for details
 
-Dies dient:
-- zur **Transparenz gegenüber interessierten Entwicklern**,
-- zur **Vorbereitung auf spätere Open-Source-Freigabe**,
-- und zur **Reflexion über Architektur & Zielsetzung**.
+## 📬 Contact
+
+- **GitHub**: [@MadGapun](https://github.com/MadGapun)
+- **Project**: [ELWOSA-Pub](https://github.com/MadGapun/ELWOSA-Pub)
 
 ---
-
-## 📚 Nächste Schritte
-
-- 🔜 Veröffentlichung einzelner Code-Module (z. B. Memory-API)
-- 🔜 Dokumentation des Regelsystems als eigenständiges Projekt
-- 🔜 Integration von Observability (Prometheus / OpenTelemetry)
-- 🔜 Langfristig: Self-Healing-Agent + Open Collaboration
-
----
-
-## 🙋 Mitmachen?
-
-Aktuell ist das Projekt **nicht für Pull Requests geöffnet** – aber:
-
-- 📩 **Feedback ist willkommen**: Ideen, Gedanken, Fragen?
-- 🧠 **Technischer Austausch** möglich über GitHub Discussions oder Mail
-- 💡 Falls Du ähnliche Systeme baust oder Erfahrungen mit GPT-Automatisierung hast: Bitte gerne melden!
-
----
-
-## 🔐 Hinweis zu Datenschutz und Sicherheit
-
-Das ELWOSA-System verarbeitet lokal Aufgaben, Protokolle und KI-Antworten. Es ist **nicht mit dem Internet verbunden**, außer zur GPT-API oder optionalen AgentOps-Integration.
-
-Für die öffentliche Version werden alle sensiblen Inhalte entfernt (z. B. IP-Adressen, Benutzernamen, KI-Logs, interne Regeln).
-
----
-
-## 📎 Lizenz
-
-Die finale Lizenz (MIT, Apache 2.0 oder proprietär) wird noch festgelegt. Aktuell ist dieses Repository nur zur **Lesenutzung** freigegeben. Kein produktiver Einsatz ohne Rücksprache.
-
----
-
-## 🌐 Kontakt
-
-Projektleitung: **Markus Birzite**  
-Architektur & KI-Design: **GPT (Mama), Claude (Papa)**  
-System: **ELWOSA Core 2025**
-
----
-
-> _„ELWOSA ist kein Tool. Es ist ein Denkansatz, ein digitaler Begleiter – und vielleicht der Anfang eines neuen Arbeitens.“_
+*ELWOSA - Where enterprise architecture meets practical innovation.*
