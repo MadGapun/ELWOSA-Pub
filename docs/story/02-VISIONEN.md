@@ -114,4 +114,4 @@ Sondern als Heimat.
 
 ---
 
-**➡️ Weiter mit:** [Teil III - Die Architektur](./03-ARCHITEKTUR-STORY.md)
+**➡️ Weiter mit:** [Teil III - Die Architektur](./ARCHITECTURE.md) 
