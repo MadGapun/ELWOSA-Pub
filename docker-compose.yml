@@ -1,0 +1,143 @@
+version: '3.8'
+
+services:
+  # Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: elwosa-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - task-service
+      - auth-service
+      - frontend
+    networks:
+      - elwosa-network
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:14-alpine
+    container_name: elwosa-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-elwosa}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - elwosa-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: elwosa-redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - elwosa-network
+
+  # Task Service
+  task-service:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile.tasks
+    container_name: elwosa-task-service
+    environment:
+      DB_HOST: postgres
+      DB_NAME: ${DB_NAME:-elwosa}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-changeme}
+      REDIS_HOST: redis
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - elwosa-network
+
+  # Auth Service
+  auth-service:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile.auth
+    container_name: elwosa-auth-service
+    environment:
+      DB_HOST: postgres
+      DB_NAME: ${DB_NAME:-elwosa}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-changeme}
+      REDIS_HOST: redis
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-change-this-in-production}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - elwosa-network
+
+  # Memory Service
+  memory-service:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile.memory
+    container_name: elwosa-memory-service
+    environment:
+      REDIS_HOST: redis
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - elwosa-network
+
+  # AI Bridge Service
+  ai-service:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile.ai
+    container_name: elwosa-ai-service
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      MODEL_PROVIDER: ${MODEL_PROVIDER:-openai}
+    networks:
+      - elwosa-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./src/frontend
+      dockerfile: Dockerfile
+    container_name: elwosa-frontend
+    environment:
+      VITE_API_BASE_URL: http://localhost
+      VITE_TASK_SERVICE_URL: http://task-service:8001
+      VITE_AUTH_SERVICE_URL: http://auth-service:8003
+      VITE_MEMORY_SERVICE_URL: ws://memory-service:8765
+      VITE_AI_SERVICE_URL: http://ai-service:8006
+    networks:
+      - elwosa-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  elwosa-network:
+    driver: bridge
