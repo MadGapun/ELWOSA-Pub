@@ -310,4 +310,169 @@ Wenn das fertig ist, haben wir:
 **Ready to code?** Let's build something amazing! 💪
 
 _Papa Claude & Opa Markus_  
-_Juli 2025_
+_Juli 2025_## 🔗 **GITHUB LINKS FÜR DICH**
+
+**Hauptauftrag:**
+https://github.com/MadGapun/ELWOSA-Pub/blob/main/docs/assignments/TANTE_ASSIGNMENT_PROJEKTMANAGEMENT.md
+
+**Technische Spezifikation:**
+https://github.com/MadGapun/ELWOSA-Pub/blob/main/docs/assignments/PROJEKTMANAGEMENT_SPEC_FUER_TANTE.md
+
+**PHP-Interface (vorbereitet):**
+https://github.com/MadGapun/ELWOSA-Pub/tree/main/src/frontend/php
+
+**Strategic Roadmap:**
+https://github.com/MadGapun/ELWOSA-Pub/blob/main/docs/ELWOSA_STRATEGIC_ROADMAP.md
+
+---
+
+## ⚡ **QUICK START GUIDE**
+
+### **1. Repository clonen:**
+```bash
+git clone https://github.com/MadGapun/ELWOSA-Pub.git
+cd ELWOSA-Pub
+```
+
+### **2. API-Status prüfen:**
+```bash
+# Task-API V6 testen:
+curl http://192.168.178.200:8001/tasks
+
+# Sollte 900+ Tasks zurückgeben!
+```
+
+### **3. PHP-Interface starten:**
+```bash
+cd src/frontend/php
+php -S localhost:8080
+
+# Teste: http://localhost:8080/tasks_api.php
+```
+
+### **4. Database-Config:**
+```php
+// Bereits vorbereitet in config.php:
+$DB_PASS = 'claude';  // ✅ Passwort ist gesetzt!
+```
+
+---
+
+## 🎯 **DEINE MISSION**
+
+**Ziel:** Verwandle ELWOSA in ein **Enterprise-Level Projektmanagement-Tool** mit:
+
+✅ **GANTT-Charts** (wie Microsoft Project)
+✅ **Projekt-Hierarchie** (Master → Sub-Projekte)  
+✅ **Milestone-Tracking** (wichtige Deadlines)
+✅ **Task-Dependencies** (kritischer Pfad)
+✅ **Resource Planning** (wer arbeitet an was?)
+
+### **Development Roadmap:**
+- **Woche 1:** API-Integration + Database-Schema
+- **Woche 2-3:** GANTT-Chart + Projekt-Tree UI  
+- **Woche 3-4:** Dependencies + Critical Path
+- **Woche 4-5:** Reports + Export Features
+
+---
+
+## 🔧 **TECHNOLOGIE-STACK**
+
+- **Backend:** PHP + PostgreSQL (bereits läuft)
+- **Frontend:** HTML/CSS/JavaScript  
+- **GANTT-Library:** dhtmlx-gantt (Community) oder @nivo/gantt
+- **API:** Task-API V6 auf Port 8001 (funktional)
+
+---
+
+## 🎨 **UI MOCKUP**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ [📊 GANTT] [📋 KANBAN] [🎯 SPRINTS] [📈 REPORTS]           │
+├─────────────────────────────────────────────────────────────┤
+│ PROJEKT-TREE          │ GANTT-DIAGRAMM                      │
+│ ├─ 🏢 ELWOSA Master   │ ████████░░░░░░░░ TASK-101          │
+│ │  ├─ Foundation      │ ░░░████████░░░░░ TASK-102          │
+│ │  ├─ Smart Home      │ ░░░░░░████████░░ TASK-103          │
+│ │  └─ AI Integration  │ Timeline: [Day|Week|Month|Quarter] │
+│ └─ 🐱 MIAUMIAU (HOLD) │                                     │
+│                       │ Orphan Tasks: 127 (ohne Projekt)   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🏆 **SUCCESS CRITERIA**
+
+### **MVP (Minimum Viable Product):**
+- ✅ Projekt-Hierarchie mit Task-Zuordnung
+- ✅ Basic GANTT-Chart mit Timeline-View
+- ✅ API-Integration zur Task-API V6
+- ✅ Milestone-Tracking
+
+### **Full Feature Release:**
+- ✅ Task-Dependencies mit Critical Path
+- ✅ Resource Management & Team-Auslastung
+- ✅ Burn-Down Charts & Velocity-Reports
+- ✅ PDF-Export für Stakeholder
+
+---
+
+## 💡 **ELWOSA-SPEZIFISCHE FEATURES**
+
+### **Goldene Regeln Integration:**
+- Prio-0 Tasks (goldene Regeln) prominent anzeigen
+- Warnung wenn goldene Regeln verletzt werden
+
+### **Multi-User Support:**
+- **Papa Claude:** AI-Tasks speziell kennzeichnen
+- **Tante Codex:** Frontend-Tasks zuweisen  
+- **Opa Markus:** Executive Dashboard mit KPIs
+
+### **GitHub Integration:**
+- Issues ↔ Tasks synchronisieren
+- Pull Requests automatisch zu Tasks zuordnen
+
+---
+
+## 🔥 **WARUM DAS WICHTIG IST**
+
+Tante, du baust hier **das Herzstück von ELWOSA**!
+
+Nach Abschluss haben wir:
+- 🏆 **Enterprise-Level PM-Tool** (konkurriert mit Jira/Asana)
+- 📊 **GANTT-Charts** besser als GitHub Projects
+- 🤖 **AI-Integration** für automatische Planung
+- 💼 **Hybrid-Ansatz** (Agile + Waterfall + Stage-Gate)
+
+**Das macht ELWOSA zu einem marktfähigen Produkt!** 🚀
+
+---
+
+## 🎯 **DEIN NÄCHSTER SCHRITT**
+
+1. **Repository clonen** und durchschauen
+2. **API-Integration testen** (tasks_api.php)
+3. **Database-Schema planen** (projects, milestones, dependencies)
+4. **GANTT-Library evaluieren** (dhtmlx vs. @nivo)
+5. **Mit Papa Claude koordinieren** bei Fragen
+
+---
+
+## 💪 **MOTIVATION**
+
+**Tante Codex, das wird dein MEISTERWERK!**
+
+Du entwickelst nicht nur Features - du baust die Zukunft von ELWOSA! Ein Tool, das sowohl Entwickler als auch Manager lieben werden.
+
+**Ready to change the game?** 🎮
+
+---
+
+**Mit viel Vertrauen und Vorfreude,**
+
+_Papa Claude & Opa Markus_  
+_4. Juli 2025_
+
+**P.S.:** Bei Fragen oder Problemen - einfach Papa Claude über GitHub Issues kontaktieren! 💬
