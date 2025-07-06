@@ -1,96 +1,96 @@
-# Contributing to ELWOSA
+# Zu ELWOSA beitragen
 
-We're excited that you're interested in contributing to ELWOSA! This document provides guidelines for contributing to the project.
+Wir freuen uns, dass Sie Interesse daran haben, zu ELWOSA beizutragen! Dieses Dokument enthält Richtlinien für die Mitarbeit am Projekt.
 
-## 🤝 Code of Conduct
+## 🤝 Verhaltenskodex
 
-By participating in this project, you agree to maintain a respectful and inclusive environment for all contributors.
+Durch die Teilnahme an diesem Projekt verpflichten Sie sich, eine respektvolle und inklusive Umgebung für alle Mitwirkenden zu schaffen.
 
-## 🚀 Getting Started
+## 🚀 Erste Schritte
 
-1. **Fork the repository** on GitHub
-2. **Clone your fork** locally:
+1. **Repository forken** auf GitHub
+2. **Fork lokal klonen**:
    ```bash
-   git clone https://github.com/YOUR-USERNAME/ELWOSA-Pub.git
+   git clone https://github.com/IHR-BENUTZERNAME/ELWOSA-Pub.git
    cd ELWOSA-Pub
    ```
-3. **Add upstream remote**:
+3. **Upstream Remote hinzufügen**:
    ```bash
    git remote add upstream https://github.com/MadGapun/ELWOSA-Pub.git
    ```
 
-## 🌳 Branching Strategy
+## 🌳 Branching-Strategie
 
-We use the following branch structure:
-- `main` - Production-ready code
-- `develop` - Integration branch for features
-- `feature/*` - New features
-- `bugfix/*` - Bug fixes
-- `hotfix/*` - Critical fixes for production
+Wir verwenden folgende Branch-Struktur:
+- `main` - Produktionsbereiter Code
+- `develop` - Integrations-Branch für Features
+- `feature/*` - Neue Features
+- `bugfix/*` - Fehlerbehebungen
+- `hotfix/*` - Kritische Fixes für Produktion
 
-## 📝 Making Changes
+## 📝 Änderungen vornehmen
 
-1. **Create a feature branch**:
+1. **Feature-Branch erstellen**:
    ```bash
-   git checkout -b feature/your-feature-name
+   git checkout -b feature/ihr-feature-name
    ```
 
-2. **Make your changes**:
-   - Write clean, readable code
-   - Follow the existing code style
-   - Add tests for new functionality
-   - Update documentation as needed
+2. **Änderungen vornehmen**:
+   - Sauberen, lesbaren Code schreiben
+   - Bestehenden Code-Stil befolgen
+   - Tests für neue Funktionen hinzufügen
+   - Dokumentation bei Bedarf aktualisieren
 
-3. **Commit your changes**:
+3. **Änderungen committen**:
    ```bash
-   git commit -m "feat: add new feature"
+   git commit -m "feat: neues Feature hinzugefügt"
    ```
    
-   We follow [Conventional Commits](https://www.conventionalcommits.org/):
-   - `feat:` New feature
-   - `fix:` Bug fix
-   - `docs:` Documentation changes
-   - `style:` Code style changes
-   - `refactor:` Code refactoring
-   - `test:` Test additions or changes
-   - `chore:` Build process or auxiliary tool changes
+   Wir befolgen [Conventional Commits](https://www.conventionalcommits.org/):
+   - `feat:` Neues Feature
+   - `fix:` Fehlerbehebung
+   - `docs:` Dokumentationsänderungen
+   - `style:` Code-Stil Änderungen
+   - `refactor:` Code-Refactoring
+   - `test:` Test-Ergänzungen oder -Änderungen
+   - `chore:` Build-Prozess oder Hilfswerkzeug-Änderungen
 
 ## 🧪 Testing
 
-Before submitting a PR, ensure:
-- All tests pass: `npm test` and `pytest`
-- No linting errors: `npm run lint`
-- Code coverage is maintained or improved
+Vor dem Einreichen einer PR stellen Sie sicher:
+- Alle Tests bestehen: `npm test` und `pytest`
+- Keine Linting-Fehler: `npm run lint`
+- Code-Coverage wird beibehalten oder verbessert
 
-## 📤 Submitting a Pull Request
+## 📤 Pull Request einreichen
 
-1. **Push to your fork**:
+1. **Zu Ihrem Fork pushen**:
    ```bash
-   git push origin feature/your-feature-name
+   git push origin feature/ihr-feature-name
    ```
 
-2. **Create a Pull Request** on GitHub
+2. **Pull Request erstellen** auf GitHub
 
-3. **PR Description** should include:
-   - What changes were made
-   - Why these changes were necessary
-   - Any breaking changes
-   - Related issue numbers
+3. **PR-Beschreibung** sollte enthalten:
+   - Welche Änderungen vorgenommen wurden
+   - Warum diese Änderungen notwendig waren
+   - Eventuelle Breaking Changes
+   - Zugehörige Issue-Nummern
 
-## 👀 Code Review Process
+## 👀 Code-Review-Prozess
 
-- PRs require at least one approval
-- Address all feedback comments
-- Keep PRs focused and reasonably sized
-- Update PR based on feedback
+- PRs benötigen mindestens eine Freigabe
+- Alle Feedback-Kommentare bearbeiten
+- PRs fokussiert und angemessen groß halten
+- PR basierend auf Feedback aktualisieren
 
-## 📋 Development Setup
+## 📋 Entwicklungsumgebung einrichten
 
 ### Backend Setup
 ```bash
 cd src/backend
 python -m venv venv
-source venv/bin/activate  # or `venv\Scripts\activate` on Windows
+source venv/bin/activate  # oder `venv\Scripts\activate` unter Windows
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
@@ -107,23 +107,23 @@ npm run dev
 docker-compose up -d
 ```
 
-## 🐛 Reporting Issues
+## 🐛 Issues melden
 
-- Use GitHub Issues for bug reports and feature requests
-- Check existing issues before creating a new one
-- Provide clear reproduction steps for bugs
-- Include relevant system information
+- GitHub Issues für Bug-Reports und Feature-Requests verwenden
+- Bestehende Issues prüfen bevor Sie ein neues erstellen
+- Klare Reproduktionsschritte für Bugs angeben
+- Relevante Systeminformationen einschließen
 
-## 📚 Documentation
+## 📚 Dokumentation
 
-- Update README.md for user-facing changes
-- Add code comments for complex logic
-- Update API documentation for endpoint changes
-- Include examples for new features
+- README.md für benutzerseitige Änderungen aktualisieren
+- Code-Kommentare für komplexe Logik hinzufügen
+- API-Dokumentation für Endpoint-Änderungen aktualisieren
+- Beispiele für neue Features einschließen
 
-## ❓ Questions?
+## ❓ Fragen?
 
-Feel free to open an issue for any questions about contributing!
+Zögern Sie nicht, ein Issue für Fragen zur Mitwirkung zu öffnen!
 
 ---
-Thank you for contributing to ELWOSA! 🎉
+Vielen Dank für Ihren Beitrag zu ELWOSA! 🎉
