@@ -1,14 +1,14 @@
-# ELWOSA System Architecture
+# ELWOSA System-Architektur
 
-## Overview
+## Überblick
 
-ELWOSA implements a modern microservices architecture designed for scalability, maintainability, and extensibility. The system follows Domain-Driven Design (DDD) principles and implements various enterprise patterns.
+ELWOSA implementiert eine moderne Microservices-Architektur, die für Skalierbarkeit, Wartbarkeit und Erweiterbarkeit konzipiert ist. Das System folgt Domain-Driven Design (DDD) Prinzipien und implementiert verschiedene Enterprise-Patterns.
 
-## System Components
+## System-Komponenten
 
 ```mermaid
 graph TB
-    subgraph "Frontend Layer"
+    subgraph "Frontend-Schicht"
         UI[React Dashboard]
         MW[Mobile Web App]
     end
@@ -17,22 +17,22 @@ graph TB
         GW[NGINX Reverse Proxy]
     end
     
-    subgraph "Service Layer"
+    subgraph "Service-Schicht"
         TS[Task Service<br/>FastAPI:8001]
         AS[Auth Service<br/>FastAPI:8003]
         MS[Memory Service<br/>WebSocket:8765]
         AI[AI Bridge Service<br/>FastAPI:8006]
     end
     
-    subgraph "Data Layer"
+    subgraph "Daten-Schicht"
         PG[(PostgreSQL<br/>Tasks & Users)]
         CACHE[(Redis Cache<br/>Sessions)]
         MEM[(Memory Store<br/>JSON)]
     end
     
-    subgraph "External Services"
+    subgraph "Externe Services"
         GPT[OpenAI API]
-        LLM[Local LLMs]
+        LLM[Lokale LLMs]
     end
     
     UI --> GW
@@ -50,103 +50,103 @@ graph TB
     AI --> LLM
 ```
 
-## Core Services
+## Kern-Services
 
 ### Task Management Service
-- **Technology**: Python FastAPI
+- **Technologie**: Python FastAPI
 - **Port**: 8001
-- **Responsibilities**:
-  - CRUD operations for tasks
-  - Priority management
-  - Step tracking
-  - Real-time updates
+- **Verantwortlichkeiten**:
+  - CRUD-Operationen für Tasks
+  - Prioritäts-Management
+  - Schritt-Verfolgung
+  - Echtzeit-Updates
 
 ### Authentication Service
-- **Technology**: Python FastAPI
+- **Technologie**: Python FastAPI
 - **Port**: 8003
 - **Features**:
-  - JWT token generation
-  - User management
-  - Role-based access control
-  - Session management via Redis
+  - JWT-Token-Generierung
+  - Benutzer-Management
+  - Rollenbasierte Zugriffskontrolle
+  - Session-Management via Redis
 
 ### Memory Service
-- **Technology**: Python WebSocket Server
+- **Technologie**: Python WebSocket Server
 - **Port**: 8765
-- **Purpose**: Persistent system memory for AI context
+- **Zweck**: Persistenter System-Speicher für KI-Kontext
 - **Features**:
-  - Real-time memory updates
-  - Context preservation
-  - WebSocket streaming
+  - Echtzeit-Speicher-Updates
+  - Kontext-Bewahrung
+  - WebSocket-Streaming
 
 ### AI Bridge Service
-- **Technology**: Python FastAPI
+- **Technologie**: Python FastAPI
 - **Port**: 8006
-- **Capabilities**:
-  - Multi-model support (GPT-4, Llama, etc.)
-  - Streaming responses
-  - Context management
-  - Load balancing
+- **Fähigkeiten**:
+  - Multi-Model-Support (GPT-4, Llama, etc.)
+  - Streaming-Antworten
+  - Kontext-Management
+  - Load Balancing
 
-## Data Flow
+## Datenfluss
 
 ```mermaid
 sequenceDiagram
-    participant U as User
+    participant U as Benutzer
     participant D as Dashboard
     participant G as Gateway
     participant T as Task Service
     participant A as Auth Service
     participant DB as PostgreSQL
     
-    U->>D: Login Request
+    U->>D: Login-Anfrage
     D->>G: POST /auth/login
-    G->>A: Authenticate
-    A->>DB: Verify Credentials
-    DB-->>A: User Data
+    G->>A: Authentifizierung
+    A->>DB: Anmeldedaten prüfen
+    DB-->>A: Benutzerdaten
     A-->>G: JWT Token
-    G-->>D: Auth Response
-    D-->>U: Dashboard Access
+    G-->>D: Auth-Response
+    D-->>U: Dashboard-Zugriff
     
-    U->>D: Create Task
+    U->>D: Task erstellen
     D->>G: POST /tasks
-    G->>A: Verify Token
-    A-->>G: Valid
-    G->>T: Create Task
-    T->>DB: Insert Task
+    G->>A: Token prüfen
+    A-->>G: Gültig
+    G->>T: Task erstellen
+    T->>DB: Task einfügen
     DB-->>T: Task ID
-    T-->>G: Task Created
+    T-->>G: Task erstellt
     G-->>D: Response
-    D-->>U: Update UI
+    D-->>U: UI aktualisieren
 ```
 
-## Design Patterns
+## Design-Patterns
 
 ### 1. **Microservices Pattern**
-- Each service is independently deployable
-- Services communicate via REST APIs
-- Loose coupling, high cohesion
+- Jeder Service ist unabhängig deploybar
+- Services kommunizieren via REST APIs
+- Lose Kopplung, hohe Kohäsion
 
 ### 2. **API Gateway Pattern**
-- Single entry point for all clients
-- Request routing and load balancing
-- Cross-cutting concerns (auth, logging)
+- Einzelner Eingangspunkt für alle Clients
+- Request-Routing und Load Balancing
+- Querschnittsfunktionen (Auth, Logging)
 
 ### 3. **Repository Pattern**
-- Data access abstraction
-- Consistent interface for data operations
-- Easy testing and mocking
+- Datenbank-Abstraktion
+- Konsistente Schnittstelle für Datenoperationen
+- Einfaches Testen und Mocking
 
 ### 4. **Event-Driven Architecture**
-- WebSocket for real-time updates
-- Event sourcing for audit trail
-- Asynchronous processing
+- WebSocket für Echtzeit-Updates
+- Event Sourcing für Audit Trail
+- Asynchrone Verarbeitung
 
-## Security Architecture
+## Sicherheits-Architektur
 
 ```mermaid
 graph LR
-    subgraph "Security Layers"
+    subgraph "Sicherheits-Schichten"
         C[Client] --> TLS[TLS/HTTPS]
         TLS --> WAF[Web Application Firewall]
         WAF --> GW[API Gateway]
@@ -154,15 +154,15 @@ graph LR
         AUTH --> SVC[Services]
     end
     
-    subgraph "Security Features"
+    subgraph "Sicherheits-Features"
         JWT[JWT Tokens]
-        RBAC[Role-Based Access]
-        ENC[Encryption at Rest]
-        AUD[Audit Logging]
+        RBAC[Rollenbasierter Zugriff]
+        ENC[Verschlüsselung im Ruhezustand]
+        AUD[Audit-Protokollierung]
     end
 ```
 
-## Deployment Architecture
+## Deployment-Architektur
 
 ```yaml
 version: '3.8'
@@ -201,23 +201,23 @@ services:
       - redis_data:/data
 ```
 
-## Scalability Considerations
+## Skalierbarkeits-Überlegungen
 
-1. **Horizontal Scaling**: Services can be replicated behind load balancer
-2. **Database Sharding**: PostgreSQL supports partitioning for large datasets
-3. **Caching Strategy**: Redis for session and frequently accessed data
-4. **Async Processing**: Task queues for long-running operations
+1. **Horizontale Skalierung**: Services können hinter Load Balancer repliziert werden
+2. **Datenbank-Sharding**: PostgreSQL unterstützt Partitionierung für große Datensätze
+3. **Caching-Strategie**: Redis für Session- und häufig abgerufene Daten
+4. **Asynchrone Verarbeitung**: Task-Queues für lang andauernde Operationen
 
 ## Monitoring & Observability
 
-- **Metrics**: Prometheus + Grafana
-- **Logging**: ELK Stack (Elasticsearch, Logstash, Kibana)
+- **Metriken**: Prometheus + Grafana
+- **Protokollierung**: ELK Stack (Elasticsearch, Logstash, Kibana)
 - **Tracing**: OpenTelemetry
-- **Health Checks**: Built into each service
+- **Health Checks**: In jeden Service integriert
 
-## Future Enhancements
+## Zukünftige Verbesserungen
 
-1. **GraphQL Gateway**: For flexible client queries
-2. **Service Mesh**: Istio for advanced traffic management
-3. **Event Streaming**: Apache Kafka for real-time data pipeline
-4. **ML Pipeline**: Dedicated service for AI model management
+1. **GraphQL Gateway**: Für flexible Client-Abfragen
+2. **Service Mesh**: Istio für erweiterte Traffic-Verwaltung
+3. **Event Streaming**: Apache Kafka für Echtzeit-Daten-Pipeline
+4. **ML Pipeline**: Dedizierter Service für KI-Model-Management
