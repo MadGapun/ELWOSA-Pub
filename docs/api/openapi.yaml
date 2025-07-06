@@ -1,0 +1,738 @@
+openapi: 3.0.3
+info:
+  title: ELWOSA API
+  description: |
+    Enterprise-Level Work Organization & System Architecture API
+    
+    Diese API bietet umfassende Funktionen für Projektmanagement,
+    Task-Verwaltung und KI-gestützte Workflows.
+    
+    ## Authentifizierung
+    
+    Die API verwendet JWT-basierte Authentifizierung. Alle Endpunkte
+    (außer Login/Register) erfordern einen gültigen Bearer Token.
+    
+    ## Rate Limiting
+    
+    - 1000 Requests pro Stunde für authentifizierte Benutzer
+    - 100 Requests pro Stunde für nicht-authentifizierte Benutzer
+    
+    ## Fehlerbehandlung
+    
+    Die API gibt standardisierte HTTP-Statuscodes zurück:
+    - 200: Erfolg
+    - 400: Bad Request (Validierungsfehler)
+    - 401: Unauthorized (Authentifizierung erforderlich)
+    - 403: Forbidden (Unzureichende Berechtigung)
+    - 404: Not Found
+    - 429: Too Many Requests (Rate Limit erreicht)
+    - 500: Internal Server Error
+    
+  version: 1.0.0
+  contact:
+    name: ELWOSA Support
+    url: https://github.com/MadGapun/ELWOSA-Pub
+    email: support@elwosa.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8001
+    description: Lokale Entwicklung
+  - url: https://api.elwosa.com/v1
+    description: Produktions-API
+
+security:
+  - BearerAuth: []
+
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Authentifizierung
+      summary: Benutzer-Anmeldung
+      description: Authentifiziert Benutzer und gibt JWT-Token zurück
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+                password:
+                  type: string
+                  format: password
+                  example: sicheresPasswort123
+      responses:
+        '200':
+          description: Erfolgreiche Anmeldung
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                  token_type:
+                    type: string
+                    example: bearer
+                  expires_in:
+                    type: integer
+                    example: 3600
+                  user:
+                    $ref: '#/components/schemas/User'
+        '401':
+          description: Ungültige Anmeldedaten
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tasks:
+    get:
+      tags:
+        - Tasks
+      summary: Tasks abrufen
+      description: Gibt eine Liste aller Tasks des authentifizierten Benutzers zurück
+      parameters:
+        - name: status
+          in: query
+          description: Filtert Tasks nach Status
+          schema:
+            type: string
+            enum: [open, in_progress, completed, cancelled]
+        - name: priority
+          in: query
+          description: Filtert Tasks nach Priorität
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 5
+        - name: assigned_to
+          in: query
+          description: Filtert Tasks nach zugewiesenem Benutzer
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Maximale Anzahl zurückgegebener Tasks
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          description: Anzahl zu überspringender Tasks für Paginierung
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: Liste der Tasks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Task'
+                  total:
+                    type: integer
+                    description: Gesamtanzahl der Tasks
+                  limit:
+                    type: integer
+                  offset:
+                    type: integer
+    
+    post:
+      tags:
+        - Tasks
+      summary: Neue Task erstellen
+      description: Erstellt eine neue Task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCreate'
+      responses:
+        '201':
+          description: Task erfolgreich erstellt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Validierungsfehler
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tasks/{task_id}:
+    get:
+      tags:
+        - Tasks
+      summary: Task Details abrufen
+      description: Gibt Details einer spezifischen Task zurück
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          description: ID der Task
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Task Details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          description: Task nicht gefunden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    put:
+      tags:
+        - Tasks
+      summary: Task aktualisieren
+      description: Aktualisiert eine bestehende Task
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          description: ID der Task
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskUpdate'
+      responses:
+        '200':
+          description: Task erfolgreich aktualisiert
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          description: Task nicht gefunden
+    
+    delete:
+      tags:
+        - Tasks
+      summary: Task löschen
+      description: Löscht eine Task
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          description: ID der Task
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Task erfolgreich gelöscht
+        '404':
+          description: Task nicht gefunden
+
+  /tasks/{task_id}/steps:
+    get:
+      tags:
+        - Task Steps
+      summary: Task Steps abrufen
+      description: Gibt alle Steps einer Task zurück
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Liste der Task Steps
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskStep'
+    
+    post:
+      tags:
+        - Task Steps
+      summary: Task Step hinzufügen
+      description: Fügt einen neuen Step zu einer Task hinzu
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskStepCreate'
+      responses:
+        '201':
+          description: Step erfolgreich hinzugefügt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStep'
+
+  /ai/generate-task:
+    post:
+      tags:
+        - KI-Integration
+      summary: KI-gestützte Task-Generierung
+      description: Generiert Task-Details basierend auf Natural Language Input
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - prompt
+              properties:
+                prompt:
+                  type: string
+                  description: Beschreibung der gewünschten Task
+                  example: "Erstelle eine Task für die Implementierung einer Benutzer-Authentifizierung"
+                model:
+                  type: string
+                  description: KI-Model zu verwenden
+                  enum: [gpt-4, gpt-3.5-turbo, claude-3]
+                  default: gpt-4
+                temperature:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                  default: 0.7
+                  description: Kreativitäts-Parameter
+      responses:
+        '200':
+          description: KI-generierte Task-Details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: "Benutzer-Authentifizierung implementieren"
+                  description:
+                    type: string
+                    example: "Implementierung eines sicheren JWT-basierten Authentifizierungssystems"
+                  estimated_hours:
+                    type: number
+                    example: 8.5
+                  priority:
+                    type: integer
+                    example: 2
+                  suggested_assignee:
+                    type: string
+                    example: "Backend-Entwickler"
+                  subtasks:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - "JWT-Library integrieren"
+                      - "Login-Endpoint implementieren"
+                      - "Token-Validierung einrichten"
+
+  /projects:
+    get:
+      tags:
+        - Projekte
+      summary: Projekte abrufen
+      description: Gibt eine Liste aller Projekte zurück
+      responses:
+        '200':
+          description: Liste der Projekte
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+    
+    post:
+      tags:
+        - Projekte
+      summary: Neues Projekt erstellen
+      description: Erstellt ein neues Projekt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+      responses:
+        '201':
+          description: Projekt erfolgreich erstellt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+
+  /users/me:
+    get:
+      tags:
+        - Benutzer
+      summary: Aktueller Benutzer
+      description: Gibt Informationen über den aktuell authentifizierten Benutzer zurück
+      responses:
+        '200':
+          description: Benutzer-Informationen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /analytics/dashboard:
+    get:
+      tags:
+        - Analytics
+      summary: Dashboard-Metriken
+      description: Gibt Metriken für das Dashboard zurück
+      parameters:
+        - name: timeframe
+          in: query
+          description: Zeitraum für die Analyse
+          schema:
+            type: string
+            enum: [day, week, month, quarter, year]
+            default: month
+      responses:
+        '200':
+          description: Dashboard-Metriken
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardMetrics'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        name:
+          type: string
+          example: Max Mustermann
+        role:
+          type: string
+          enum: [admin, manager, developer, viewer]
+          example: developer
+        created_at:
+          type: string
+          format: date-time
+          example: "2025-01-15T10:30:00Z"
+        last_login:
+          type: string
+          format: date-time
+          example: "2025-01-15T14:22:30Z"
+
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        title:
+          type: string
+          example: "API Dokumentation aktualisieren"
+        description:
+          type: string
+          example: "OpenAPI 3.0 Spezifikation für neue Endpunkte erstellen"
+        status:
+          type: string
+          enum: [open, in_progress, completed, cancelled]
+          example: in_progress
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 5
+          example: 2
+        assigned_to:
+          type: integer
+          example: 42
+        project_id:
+          type: integer
+          example: 7
+        estimated_hours:
+          type: number
+          example: 4.5
+        actual_hours:
+          type: number
+          example: 3.2
+        created_at:
+          type: string
+          format: date-time
+          example: "2025-01-15T09:00:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          example: "2025-01-15T14:30:00Z"
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+          example: null
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskStep'
+
+    TaskCreate:
+      type: object
+      required:
+        - title
+        - project_id
+      properties:
+        title:
+          type: string
+          maxLength: 255
+          example: "Neue Feature implementieren"
+        description:
+          type: string
+          example: "Detaillierte Beschreibung der Task"
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 5
+          default: 3
+        assigned_to:
+          type: integer
+          example: 42
+        project_id:
+          type: integer
+          example: 7
+        estimated_hours:
+          type: number
+          minimum: 0
+          example: 8.0
+
+    TaskUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        status:
+          type: string
+          enum: [open, in_progress, completed, cancelled]
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 5
+        assigned_to:
+          type: integer
+        estimated_hours:
+          type: number
+          minimum: 0
+        actual_hours:
+          type: number
+          minimum: 0
+
+    TaskStep:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 456
+        task_id:
+          type: integer
+          example: 123
+        content:
+          type: string
+          example: "Endpoint /users implementiert und getestet"
+        user:
+          type: string
+          example: "Papa Claude"
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-01-15T11:45:30Z"
+
+    TaskStepCreate:
+      type: object
+      required:
+        - content
+        - user
+      properties:
+        content:
+          type: string
+          example: "Fortschritt Update"
+        user:
+          type: string
+          example: "Papa Claude"
+        timestamp:
+          type: string
+          format: date-time
+          default: "aktueller Zeitstempel"
+
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 7
+        name:
+          type: string
+          example: "ELWOSA Development"
+        description:
+          type: string
+          example: "Hauptentwicklungsprojekt für ELWOSA Platform"
+        status:
+          type: string
+          enum: [planning, active, on_hold, completed, cancelled]
+          example: active
+        start_date:
+          type: string
+          format: date
+          example: "2025-01-01"
+        end_date:
+          type: string
+          format: date
+          nullable: true
+          example: "2025-12-31"
+        created_at:
+          type: string
+          format: date-time
+        task_count:
+          type: integer
+          example: 45
+        progress:
+          type: number
+          minimum: 0
+          maximum: 100
+          example: 67.5
+
+    ProjectCreate:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          example: "Neues Projekt"
+        description:
+          type: string
+          example: "Projektbeschreibung"
+        start_date:
+          type: string
+          format: date
+          example: "2025-02-01"
+        end_date:
+          type: string
+          format: date
+          example: "2025-12-31"
+
+    DashboardMetrics:
+      type: object
+      properties:
+        open_tasks:
+          type: integer
+          example: 23
+        in_progress_tasks:
+          type: integer
+          example: 12
+        completed_tasks:
+          type: integer
+          example: 156
+        total_projects:
+          type: integer
+          example: 8
+        active_users:
+          type: integer
+          example: 15
+        productivity_score:
+          type: number
+          example: 85.4
+        completion_rate:
+          type: number
+          example: 92.1
+        average_task_time:
+          type: number
+          example: 4.2
+          description: Durchschnittliche Task-Dauer in Stunden
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Validation failed"
+        message:
+          type: string
+          example: "Das Feld 'title' ist erforderlich"
+        code:
+          type: integer
+          example: 400
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-01-15T14:30:00Z"
+        details:
+          type: object
+          additionalProperties: true
+          example:
+            field: "title"
+            constraint: "required"
+
+tags:
+  - name: Authentifizierung
+    description: Login, Logout und Token-Management
+  - name: Tasks
+    description: Task-Verwaltung und CRUD-Operationen
+  - name: Task Steps
+    description: Fortschrittsdokumentation für Tasks
+  - name: KI-Integration
+    description: KI-gestützte Features und Automatisierung
+  - name: Projekte
+    description: Projekt-Management und Organisation
+  - name: Benutzer
+    description: Benutzer-Verwaltung und Profile
+  - name: Analytics
+    description: Metriken, Reports und Dashboard-Daten
