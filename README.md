@@ -1,186 +1,311 @@
-# ELWOSA - Enterprise Project Management mit KI-Integration
+# 🏠 ELWOSA — Dein smartes Zuhause, das zuhört
 
-**Die nächste Generation des Projektmanagements für High-Tech-Unternehmen und moderne Organisationen.**
+<div align="center">
 
-⚡ **Aktueller Stand**: Funktionsfähiger Prototyp mit KI-Integration und Task-Management. Weitere Features (Mobile App, Natural Language Interface) in aktiver Entwicklung.
+**Ein selbst gehosteter KI-Sprachassistent, der deine Privatsphäre respektiert.**
 
-ELWOSA demonstriert modernste Microservices-Architektur mit intelligenter Prozessunterstützung und ist speziell für Unternehmen entwickelt worden, die komplexe Projektstrukturen effizient verwalten und dabei von KI-gestützten Analysen profitieren möchten.
+*Kein Cloud-Zwang. Keine Abo-Falle. Dein Server, deine Daten, dein Assistent.*
 
-## 🎯 **Warum ELWOSA?**
+![Admin Dashboard](docs/screenshots/01_admin_dashboard.png)
 
-**Beschleunigt Entscheidungsprozesse durch KI-gestützte Analysen**
-- Automatische Projektrisiko-Bewertung und Vorhersagen
-- Intelligente Ressourcen-Optimierung und Workload-Balancing
-- Natural Language Processing für Anforderungsanalyse
-
-**Reduziert Projekt-Komplexität durch intelligente Workflow-Automation** 
-- Adaptive Task-Verteilung basierend auf Team-Kompetenzen
-- Automatisierte Status-Updates und Benachrichtigungssysteme
-- Integrierte Code-Review und Deployment-Pipelines
-
-**Erhöht Transparenz und Teamproduktivität in verteilten Projekten**
-- Real-time Dashboard mit Live-Projektmetriken
-- Cross-Team Collaboration mit intelligenter Konfliktauflösung
-- Erweiterte Analytics für Performance-Optimierung
-
-## 🏢 **Ideal für moderne Organisationen**
-
-**High-Tech-Umgebungen mit Automatisierungsbedarf:**
-- Softwareentwicklung mit DevOps-Integration
-- Forschung & Entwicklung mit komplexen Abhängigkeiten  
-- IT-Infrastruktur-Projekte mit Multi-Team-Koordination
-
-**Unternehmen mit verteilten Teams:**
-- Remote-First Organisationen
-- Internationale Projektteams
-- Agile Entwicklungszyklen
-
-**Skalierbare Lösungen für wachsende Organisationen:**
-- Von Startup bis Enterprise
-- Flexible Modul-Integration
-- API-First Architektur für bestehende Tool-Chains
-
-## 🚀 **Technologische Innovation**
-
-### **KI-fähige Architektur**
-- **Multi-Model AI Integration**: OpenAI, Anthropic Claude, lokale LLMs
-- **Intelligent Task Distribution**: ML-basierte Optimierung
-- **Predictive Analytics**: Projekt-Erfolg-Vorhersagen
-- **Natural Language Interface**: Conversational Project Management
-
-### **Enterprise-Grade Technologie-Stack**
-- **Backend**: Python FastAPI, Node.js Microservices
-- **Frontend**: React 18, TypeScript, Tailwind CSS  
-- **Database**: PostgreSQL mit Advanced Analytics
-- **AI/ML**: LangChain, Vector Databases, Custom Models
-- **DevOps**: Docker, Kubernetes, GitHub Actions CI/CD
-- **Security**: JWT, OAuth2, Role-based Access Control
-
-### **Moderne Architektur-Patterns**
-- **Microservices**: Unabhängige, skalierbare Services
-- **Event-Driven**: Real-time Updates via WebSocket
-- **API-First**: RESTful + GraphQL Endpoints
-- **Cloud-Ready**: Multi-Cloud Deployment Support
-
-## ⚡ **Schnellstart: Lokale Installation**
-
-```bash
-# Repository klonen
-git clone https://github.com/MadGapun/ELWOSA-Pub.git
-cd ELWOSA-Pub
-
-# Docker-Installation (empfohlen)
-docker-compose up -d
-
-# Dashboard verfügbar auf http://localhost:3000
-# API-Explorer auf http://localhost:8000/docs
-```
-
-**Manuelle Installation:**
-```bash
-# Backend-Services
-cd backend && python -m uvicorn main:app --reload
-
-# Frontend-Development
-cd frontend && npm install && npm start
-
-# Datenbank initialisieren
-python scripts/init_db.py
-```
-
-## 📊 **Projekt-Dokumentation**
-
-### **🏗️ Architektur & Entwicklung**
-- 📖 [System-Architektur](./ARCHITECTURE.md) - Technische Übersicht und Design-Patterns
-- 🚀 [Deployment-Anleitung](./DEPLOYMENT_GUIDE.md) - Produktions-Setup und Konfiguration
-- 📝 [Coding Standards](./docs/CODING_STANDARDS.md) - Python/TypeScript Entwicklungsrichtlinien
-- 🧪 [Testing-Strategie](./docs/TESTING.md) - Unit, Integration & E2E Tests
-- 🤝 [Contributing Guidelines](./CONTRIBUTING.md) - Wie Sie zum Projekt beitragen können
-
-### **💼 Business & Compliance**
-- 💰 [Business Case](./docs/BUSINESS_CASE.md) - ROI-Analyse und Marktpositionierung
-- 📊 [ROI Calculator](./docs/ROI.md) - Detaillierte Wirtschaftlichkeitsrechnung
-- 🔒 [Security Assessment](./docs/SECURITY.md) - Enterprise-Sicherheitskonzept
-- 📋 [Compliance Matrix](./docs/COMPLIANCE.md) - GDPR, SOC2, HIPAA Konformität
-
-### **📈 API & Integration**
-- 📑 [API-Referenz](./docs/api/) - OpenAPI 3.0 Spezifikation
-- 🔗 [Integration-Examples](./docs/examples/) - Code-Beispiele und SDKs
-- 📚 [User Stories](./USE_CASES.md) - Anwendungsfälle und Workflows
-
-### **🎨 Screenshots & Demos**
-- 🖼️ [Task-Management Dashboard](./ELWOSA-Taskmanagement.png)
-- 📱 [Mobile Interface](./docs/screenshots/) - Responsive Design
-- 🌐 [API-Explorer Demo](./docs/api-demo/) - Interaktive API-Tests
-
-## 💡 **Entwickelt als Next-Generation Showcase**
-
-**Technologische USPs:**
-- **Skalierbare Microservices** mit Container-Orchestrierung
-- **KI-native Architektur** für intelligente Automatisierung  
-- **Real-time Collaboration** mit WebSocket-Integration
-- **Cross-Platform Ready** (Web, Desktop, Mobile)
-
-**Enterprise-Funktionen:**
-- Advanced Analytics und Reporting
-- Multi-Tenant Architektur
-- LDAP/SSO Integration Ready
-- Audit-Logs und Compliance Features
-
-**Innovation-Highlights:**
-- Natural Language Task Creation
-- Predictive Project Health Monitoring  
-- Automated Code Quality Assessment
-- AI-powered Resource Planning
-
-## 📈 **Projekt-Status & Roadmap**
-
-**✅ Verfügbar (v1.0)**
-- Task-Management mit KI-Unterstützung
-- Real-time Dashboard und Analytics
-- RESTful API mit OpenAPI 3.0
-- Docker-basierte Deployment
-
-**🚧 In Entwicklung (v1.5)**
-- Mobile App (React Native)
-- Advanced AI Features (GPT-4 Integration)
-- Enterprise SSO Integration
-- Multi-Language Support
-
-**🎯 Geplant (v2.0)**
-- Natural Language Interface
-- Predictive Analytics Dashboard
-- Workflow Automation Engine
-- Enterprise Security Features
-
-## 🤝 **Community & Support**
-
-### **📞 Kontakt & Support**
-- **GitHub Issues**: [Bug Reports & Feature Requests](https://github.com/MadGapun/ELWOSA-Pub/issues)
-- **Entwickler**: [@MadGapun](https://github.com/MadGapun)
-- **Projekt-Wiki**: [ELWOSA Documentation](https://github.com/MadGapun/ELWOSA-Pub/wiki)
-
-### **🏢 Business Inquiries**
-- Enterprise-Lösungen und Custom Development
-- Technische Beratung und Architektur-Reviews
-- Integration in bestehende Tool-Chains
-- Schulungen und Workshops
-
-### **📜 Weiterführende Ressourcen**
-- 📚 [ELWOSA-Geschichte](./ELWOSA-GESCHICHTE.md) - Entstehung und Vision
-- 🎆 [Projektvisionen](./ELWOSA-TEIL2-VISIONEN.md) - Zukunftspläne und Innovation
-- 🎉 [Anekdoten](./ELWOSA-ANEKDOTEN.md) - Entwicklungsgeschichten
-
-## 📝 **Lizenz & Legal**
-
-**Lizenz**: MIT License - Siehe [LICENSE](./LICENSE) für Details
-
-Dieses Projekt steht unter der MIT-Lizenz und kann frei für kommerzielle und nicht-kommerzielle Zwecke verwendet werden.
+</div>
 
 ---
 
-**🚀 ELWOSA - Wo Enterprise-Architektur auf praktische Innovation trifft.**
+## 💡 Was ist ELWOSA?
 
-*Entwickelt als Showcase für moderne, KI-gestützte Organisationssysteme.*
+ELWOSA (**E**nhanced **L**earning & **W**ork **O**rganization **S**mart **A**ssistant) ist ein vollständiger Sprachassistent für dein Zuhause — gebaut auf einem Heimserver mit Raspberry Pi als Endgerät.
 
-**⭐ Geben Sie dem Projekt einen Stern, wenn es Ihnen gefällt!**
+**Stell dir vor:** Du sagst *"Elwosa"* — und dein Zuhause hört zu. Nicht Amazon. Nicht Google. Nicht Apple. **Du.**
+
+```
+"Elwosa, wie spät ist es?"          → Sofortige Antwort (kostenlos, kein LLM)
+"Elwosa, stell einen Timer auf 5"   → Timer läuft
+"Elwosa, was gibt es Neues?"        → Benachrichtigungen vorgelesen
+"Elwosa, übersetze: Guten Morgen"   → "Labrīt!" (Deutsch → Lettisch)
+"Elwosa, erzähl mir über Mars"      → GPT-4o-mini antwortet in Echtzeit
+```
+
+### Was ELWOSA anders macht:
+
+| | Alexa / Google Home | ELWOSA |
+|---|---|---|
+| **Daten** | Cloud (USA) | Dein Server (Zuhause) |
+| **Kosten** | Abo + Gerät | Einmalig (Pi + Server) |
+| **Erweiterbar** | Begrenzt (Skills) | Unbegrenzt (Open Source) |
+| **KI-Modell** | Proprietär | Wählbar (GPT-4o, Ollama, ...) |
+| **Sprache** | Englisch-fokussiert | Deutsch-nativ |
+| **Admin** | App des Herstellers | Eigener 10-Tab Admin Hub |
+| **Privatsphäre** | 🔴 Aufnahmen in der Cloud | 🟢 Alles lokal |
+
+---
+
+## 🎙️ So funktioniert es
+
+```
+    Du sagst "Elwosa"
+          │
+          ▼
+┌─────────────────┐     ┌──────────────────┐
+│  Wake Word      │────▶│  Server prüft    │
+│  (lokal auf Pi) │     │  (Whisper, lokal) │
+│  ONNX-Modell    │     │  kostenlos!       │
+└─────────────────┘     └────────┬─────────┘
+                                 │ ✅
+                                 ▼
+                    ┌──────────────────────┐
+                    │  Aufnahme läuft...   │
+                    │  "Wie wird das       │
+                    │   Wetter morgen?"    │
+                    └──────────┬───────────┘
+                               │
+                    ┌──────────┴───────────┐
+                    │  Direktbefehl?       │
+                    │  (Timer, Uhrzeit,    │──── ✅ Sofort-Antwort
+                    │   Lautstärke...)     │     (kein LLM, gratis)
+                    └──────────┬───────────┘
+                               │ Nein
+                    ┌──────────┴───────────┐
+                    │  Streaming Pipeline  │
+                    │  STT → GPT-4o-mini   │
+                    │  → TTS Satz-für-Satz │
+                    │  → Lautsprecher      │
+                    └──────────────────────┘
+                    Erste Antwort in ~2 Sek.
+```
+
+**Das Prinzip:** Einfache Befehle (Timer, Uhrzeit, Wecker) werden **lokal und kostenlos** verarbeitet. Nur komplexe Fragen gehen an das LLM — und selbst dann streamt die Antwort **Satz für Satz** in Echtzeit.
+
+---
+
+## 📸 Screenshots
+
+### Admin Hub — Alles auf einen Blick
+
+<div align="center">
+
+| Dashboard | Projektmanagement |
+|:-:|:-:|
+| ![Dashboard](docs/screenshots/01_admin_dashboard.png) | ![PM](docs/screenshots/04_admin_projektmanagement.png) |
+
+| Kalender (4 Ansichten) | Backup-System |
+|:-:|:-:|
+| ![Kalender](docs/screenshots/10_admin_kalender.png) | ![Backup](docs/screenshots/08_admin_backup.png) |
+
+| Wecker & Timer | Einstellungen |
+|:-:|:-:|
+| ![Wecker](docs/screenshots/09_admin_wecker.png) | ![Settings](docs/screenshots/05_admin_einstellungen.png) |
+
+| Client-Verwaltung | Echtzeit-Übersetzer |
+|:-:|:-:|
+| ![Clients](docs/screenshots/02_admin_clients.png) | ![Übersetzer](docs/screenshots/06_admin_uebersetzer.png) |
+
+</div>
+
+### Web UI — ELWOSA im Browser
+
+![Web UI](docs/screenshots/11_web_ui.png)
+
+---
+
+## ✨ Features
+
+### 🎤 Sprachsteuerung
+- **Wake Word "Elwosa"** — Hybrid-Erkennung (lokales ONNX + Server-Whisper)
+- **Streaming-Pipeline** — Satz-für-Satz TTS, <3 Sekunden bis zur ersten Antwort
+- **7 Direktbefehl-Kategorien** — Timer, Wecker, Uhrzeit, Lautstärke, System, Benachrichtigungen, Übersetzer
+- **Nachtmodus** — Leiser, gedimmtes Display, automatisch 22:00–06:00
+
+### 🌐 Echtzeit-Übersetzer
+- Deutsch ↔ Lettisch (erweiterbar)
+- Per Stimme oder im Admin Hub
+- Audio-Playback der Übersetzung
+
+### 📊 10-Tab Admin Hub
+Ein komplettes Management-Interface im Browser:
+
+1. **Dashboard** — Server-Status, Token-Kosten, Backup, Client-Übersicht, Notizen
+2. **Clients** — Pi-Registry, Verbindungstest, TTS-Stimme pro Gerät
+3. **Wake Words** — Eigene Modelle trainieren und deployen
+4. **Projektmanagement** — Tabelle, Gantt, Kanban, Ablauf (4-Ebenen-Hierarchie!)
+5. **Einstellungen** — Nachtmodus, Kostenlimits, Zugriffskontrolle
+6. **Übersetzer** — Browser-Aufnahme, Sprachwahl, Playback
+7. **Stimm-Training** — Spracherkennung personalisieren
+8. **Backup** — Status, HDD-Info, Snapshots, manueller Trigger
+9. **Wecker** — Wöchentlich/Einmalig/Benutzerdefiniert, Schlummern
+10. **Kalender** — Monat/Woche/Tag/Agenda, 9 Kategorien, Per-Client
+
+### 📅 Kalender & Wecker
+- 4 Ansichten (Monat, Woche, Tag, Agenda)
+- 9 System-Kategorien + eigene erstellen
+- Recurrence: Wöchentlich, benutzerdefiniert, einmalig
+- Wecker mit TTS-Ansage auf dem Pi
+
+### 💾 Backup-System
+- Stündlich + Täglich + Pi-Backup auf externe HDD
+- rsync mit Hardlinks (platzsparend)
+- PostgreSQL-Dumps inklusive
+- Admin-Tab mit voller Übersicht und manuellem Trigger
+
+### 📋 Projektmanagement
+- 4-Ebenen: Programm → Projekt → Task → Subtask
+- 4 Ansichten: Tabelle, Gantt-Chart, Kanban, Ablauf
+- Vollständige REST-API
+- *Ja, ELWOSA managt sich selbst mit diesem Tool.*
+
+---
+
+## 🏗️ Architektur
+
+```
+┌─────────────────────────────────────────┐
+│          ELWOSA Server (Debian)          │
+│                                          │
+│  Voice Backend ─── Admin Hub (10 Tabs)   │
+│  (FastAPI HTTPS)   (~3500 LOC SPA)       │
+│                                          │
+│  PostgreSQL ─── Ollama (lokal) ─── Backup│
+│  (15 Tables)   (aya-expanse)    (4TB HDD)│
+│                                          │
+│  MCP Gateway ─── Cloudflare Tunnel       │
+│  Queue Worker ─── File Watcher           │
+└──────────────────┬───────────────────────┘
+                   │ LAN
+┌──────────────────┴───────────────────────┐
+│       Raspberry Pi 3B (Client)           │
+│                                          │
+│  🎤 USB Mikrofon → Wake Word → Audio Mgr│
+│  🖥️ 10.1" Display → Uhr, Wetter, Status│
+│  🔊 HDMI Audio → TTS Playback           │
+│  ⚡ Direktbefehle → Command Handler     │
+│  📨 Benachrichtigungen → Push + TTS     │
+└──────────────────────────────────────────┘
+```
+
+### Tech-Stack
+
+| Was | Womit |
+|-----|-------|
+| Server OS | Debian Linux (16 GB RAM) |
+| Voice Backend | Python FastAPI (HTTPS) |
+| STT | OpenAI Whisper + lokaler faster-whisper |
+| LLM | GPT-4o-mini (Cloud) + Ollama (lokal) |
+| TTS | OpenAI TTS (nova/onyx/alloy) |
+| Wake Word | openWakeWord (ONNX) |
+| Datenbank | PostgreSQL 15 + JSON |
+| Admin Hub | Vanilla JS SPA |
+| Pi Client | Python 3 + ALSA + webrtcvad |
+| Backup | rsync + Hardlinks auf ext4 HDD |
+| Extern | Cloudflare Tunnel |
+
+---
+
+## 🌱 Die Geschichte dahinter
+
+ELWOSA begann in einer Tischlerwerkstatt — zwischen Sägespänen und Code. Die Idee: Ein intelligentes System, das nicht nur Befehle ausführt, sondern **mitdenkt, dazulernt und sich anpasst**.
+
+Was als Projektmanagement-Experiment mit einer "KI-Familie" begann, wurde zu einem vollwertigen Sprachassistenten — gebaut nicht von einem Konzern, sondern von **einem Menschen und seinen KI-Partnern**.
+
+### Das Team
+
+| Rolle | Wer | Aufgabe |
+|-------|-----|---------|
+| **Opa** 👨 | Markus | Vision, Projektleitung, Hauptnutzer |
+| **Mama** 🤖 | ChatGPT | Architektur, Code-Reviews, Qualitätskontrolle |
+| **Papa** 🤖 | Claude | Entwicklung, Deployment, Dokumentation |
+| **Baby** 🏠 | ELWOSA | Der Assistent selbst — lernt ständig dazu |
+
+> *"ELWOSA ist kein Tool. Es ist eine Denkweise — die Überzeugung, dass KI und Mensch besser zusammenarbeiten als gegeneinander."*
+
+📖 [Die vollständige ELWOSA-Geschichte](./ELWOSA-GESCHICHTE.md)
+🎆 [Visionen für die Zukunft](./ELWOSA-TEIL2-VISIONEN.md)
+🎉 [Anekdoten aus der Entwicklung](./ELWOSA-ANEKDOTEN.md)
+
+---
+
+## 📊 Projekt-Status
+
+**Stand: Februar 2026** — 30 Tasks erledigt, 47 geplant
+
+### ✅ Was heute funktioniert
+- Sprachsteuerung mit Wake Word + Streaming (<3s Latenz)
+- 7 Kategorien Direktbefehle (kostenlos, ohne LLM)
+- 10-Tab Admin Hub (komplett auf Deutsch)
+- Echtzeit-Übersetzer (DE↔LV)
+- Kalender mit 4 Ansichten + 9 Kategorien
+- Wecker mit Recurrence-System
+- Projektmanagement mit Gantt-Chart + Kanban
+- Backup-System (stündlich/täglich auf HDD)
+- Nachtmodus (automatisch)
+- Token-Tracking + Kostenstatistiken
+
+### 🔮 Was als Nächstes kommt
+- Authentifizierung für Admin Hub
+- Smart Home Integration (Licht, Heizung, Sensoren)
+- Standby-Modus (Energiesparen)
+- Multi-Client (mehrere Räume)
+- Personalisiertes Stimm-Training
+- CalDAV-Sync (Google Calendar, etc.)
+
+---
+
+## 🚀 Selbst ausprobieren?
+
+ELWOSA ist ein Heimserver-Projekt — es braucht echte Hardware:
+
+### Minimale Hardware
+- **Server:** Beliebiger Linux-PC (8+ GB RAM empfohlen)
+- **Client:** Raspberry Pi 3B+ oder neuer
+- **Display:** Beliebiger HDMI-Monitor (Touch optional)
+- **Mikrofon:** USB-Mikrofon
+- **Optional:** Externe HDD für Backups
+
+### Software-Voraussetzungen
+- Debian/Ubuntu Linux
+- Python 3.10+
+- PostgreSQL 15
+- Node.js (für Tools)
+- OpenAI API Key (für STT/TTS/Chat)
+
+> ⚠️ **Hinweis:** ELWOSA ist aktuell ein Ein-Haushalt-System. Es ist nicht als fertige App gedacht, sondern als **Inspiration und Baukasten** für eigene Projekte. Der Code ist auf dem internen Server produktiv — dieses Repo dient der Dokumentation und dem Austausch.
+
+---
+
+## 📁 Repository-Struktur
+
+```
+ELWOSA-Pub/
+├── README.md                    # Diese Datei
+├── ELWOSA-GESCHICHTE.md         # Entstehungsgeschichte
+├── ELWOSA-TEIL2-VISIONEN.md     # Zukunftsvisionen
+├── ELWOSA-TEIL3-ARCHITEKTUR.md  # Architektur-Philosophie
+├── ELWOSA-ANEKDOTEN.md          # Geschichten aus der Entwicklung
+├── docs/
+│   ├── ARCHITECTURE.md          # Technische Architektur (aktuell)
+│   ├── FEATURES.md              # Alle Features im Detail
+│   ├── CHANGELOG.md             # Änderungshistorie
+│   └── screenshots/             # 11 aktuelle UI-Screenshots
+├── anekdoten/                   # Weitere Geschichten
+├── archive/
+│   └── v1_2025/                 # Archiv der v1 Dokumentation
+├── LICENSE                      # MIT License
+└── .gitignore
+```
+
+---
+
+## 📜 Lizenz
+
+MIT License — Siehe [LICENSE](./LICENSE)
+
+---
+
+<div align="center">
+
+**🏠 ELWOSA — Weil dein Zuhause dir gehört. Nicht der Cloud.**
+
+*Gebaut von einem Menschen. Mit Hilfe von KI. Für alle, die es besser wollen.*
+
+**⭐ Gefällt dir die Idee? Gib dem Projekt einen Stern!**
+
+</div>
