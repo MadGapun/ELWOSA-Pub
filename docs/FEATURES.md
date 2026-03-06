@@ -42,7 +42,10 @@ Regex-basierte Erkennung VOR dem LLM-Call:
 - **Server-Status:** CPU, RAM, Disk-Auslastung
 - **10 Dienste:** Live-Status aller systemd Services
 - **Token-Verbrauch:** Kosten-Tracking (EUR) für OpenAI
-- **Backup-Status:** Letzte Backups, HDD-Belegung
+- **Token-Protokoll:** Per-Request Kosten-Log mit Feature-Breakdown (STT, Chat, TTS, Wallpaper, Translate)
+  - Horizontale Balken pro Feature, filterbar nach Zeitraum
+  - Tabelle: Timestamp, Feature, Model, Tokens, Kosten, Detail
+- **Backup-Status:** Letzte Backups, HDD-Gesundheit (SMART), Stale-Alarm
 - **Client-Übersicht:** Verbundene Pi-Clients mit Wallpaper
 - **Notizen-Widget:** Quick-Add, Pin, Dashboard-Integration
 
@@ -61,12 +64,16 @@ Regex-basierte Erkennung VOR dem LLM-Call:
 - **4-Ebenen-Hierarchie:** Programm → Projekt → Task → Subtask
 - **4 Ansichten:**
   - Tabelle (MS Project-Stil, aufklappbar)
-  - Gantt-Chart (KW-basiert, CSS-Grid)
+  - Gantt-Chart v2 (tagesgenau, 6-Monats-Fenster, Zoom Tage/Wochen)
   - Kanban-Board (Drag & Drop)
   - Ablauf (Timeline)
 - Projekt-Filter, Status-Tracking, Prioritäten
 
 ### 5. Einstellungen
+- **Minimalmodus:** Deaktiviert alle kostenpflichtigen Automatismen, Ollama übernimmt
+  - Großer Toggle mit Status-Banner, aktiviert seit Datum
+  - ELWOSA informiert Nutzer bei Nachfrage kontextbewusst
+- **Feature-Toggles:** Einzelne Features gezielt steuern (z.B. tägliches Wallpaper ~0,04 USD/Tag)
 - **Nachtmodus:** Auto 22:00-06:00, manuell per Stimme
 - **Cost Limits:** Monatliche EUR-Grenze für API-Kosten
 - **Zugriffskontrolle:** Auth-System vorbereitet (SHA-256+Salt)

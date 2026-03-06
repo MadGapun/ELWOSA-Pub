@@ -1,5 +1,23 @@
 # 📋 ELWOSA Changelog
 
+## März 2026
+
+### Prompt 046 (06.03.2026)
+- **NEU: Token-Protokoll** — Granulares Per-Request Usage-Logging mit `usage_log` Tabelle (Feature, Model, Tokens, Kosten)
+- **NEU: Kosten-Breakdown** — Horizontale Balken pro Feature (STT, Chat, TTS, Wallpaper, Translate) im Dashboard
+- **NEU: Token-Log-Tabelle** — Filterbar nach Feature + Zeitraum (Heute/Woche/Monat/Alles)
+- **NEU: Minimalmodus** — Deaktiviert alle kostenpflichtigen Automatismen, Ollama übernimmt
+- **NEU: Feature-Toggles** — Einzelne Features (z.B. tägliches Wallpaper) gezielt ein/ausschalten
+- **NEU: Gantt-Chart v2** — Komplett-Rewrite: echte Datums-Balken statt Phasen, 3 Monate zurück + 3 voraus
+  - Tages-/Wochen-Zoom, Heute-Linie (rot), pulsierendes Ende bei aktiven Tasks
+  - Klickbare Balken → Task-Detail-Modal, Hover-Tooltips mit Dates + Dependencies
+  - Sticky Labels, Weekend-Shading, Auto-Scroll zu Heute
+
+### Prompt 044-045 (02.03.2026)
+- **NEU: Backup v4** — Write-Test, Auto-Remount, SMART-Health-Check (Cron + JSON Cache)
+- **NEU: Backup Dashboard** — HDD-Gesundheit, Stale-Alarm (>26h), SMART-Temperatur + Sektoren
+- **FIX: HDD Read-Only** — ext4 Journal-Recovery nach Crash, fsck.ext4 automatisch
+
 ## Februar 2026
 
 ### Prompt 040+ (24.02.2026)
@@ -66,4 +84,4 @@
 
 ---
 
-*Letzte Aktualisierung: 24.02.2026*
+*Letzte Aktualisierung: 06.03.2026*
